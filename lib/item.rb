@@ -9,6 +9,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.recognize(term, user_id)
+
     Item.where("user_id = ?", user_id).each do |item|
       if (item.name.downcase == term.downcase) | item.name.downcase.split(" ").include?(term.downcase)
         return item
