@@ -22,12 +22,6 @@ CSV.foreach('./lib/seeds/notes_seed.csv', headers: true) do |row|
   })
 end
 
-# Remove later, old flow
-# tracks user's game log and moves
-# text = []
-# moves = 0
-
-# TODO: ensure that we redirect to / if no user!!!!
 before do
   @user = session[:id] != nil ? User.find(session[:id]) : nil
 end
