@@ -10,7 +10,7 @@ _A Zork homage set in a haunted asylum. Built in Ruby Script using Active Record
 
 ## Setup/Installation Requirements
 
-_You can play this game online at: [stark-eyrie-10328.herokuapp.com](https://stark-eyrie-10328.herokuapp.com/)._
+_You can play this game online at: [asylum-zork-beta.herokuapp.com](https://asylum-zork-beta.herokuapp.com)._
 
 _To install the game on your own machine follow these steps:_
 
