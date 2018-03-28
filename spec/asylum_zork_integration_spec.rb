@@ -59,3 +59,38 @@ describe 'room actions', { type: :feature } do
     expect(page).to have_content('Dammit, Kelsey')
   end
 end
+
+describe 'user session', { type: :feature } do
+  before do
+    visit('/menu')
+  end
+
+  it "clears a user's room progress when they return to menu" do
+    visit('/room/yard')
+    visit('/menu')
+    visit('/room/yard')
+    expect(page).to have_no_content("You're in an open yard and the dark mansion stands before you")
+  end
+
+  it "clears a user's items when they return to the menu" do
+    visit('/room/intake')
+    fill_in('action', with: 'take keycard')
+    click_button('Act!')
+    visit('/menu')
+    visit('/room/intake')
+    fill_in('action', with: 'inventory')
+    click_button('Act!')
+    expect(page).to have_content('Inventory is empty.')
+  end
+
+  it "clears a user's move counter when they return to the menu" do
+    visit('/room/yard')
+    fill_in('action', with: 'w')
+    click_button('Act!')
+    fill_in('action', with: 'e')
+    click_button('Act!')
+    visit('/menu')
+    visit('/room/yard')
+    expect(page).to have_content('Moves: 0')
+  end
+end

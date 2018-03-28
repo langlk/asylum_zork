@@ -41,23 +41,16 @@ get('/menu') do
   # Game Reset and Setup
   # New game load workflow:
     # erase user data when back at menu
-    # make new user with blank moves and text
-    # save as session[:id]
-    # make new rooms/items for user
-  # OLD VERSION OF FLOW, REMOVE LATER
-  # text = []
-  # moves = 0
-  # Room.all.each do |room|
-  #   room.destroy
-  # end
-  #
-  # Item.all.each do |item|
-  #   item.destroy
-  # end
-  #
-  # Note.all.each do |note|
-  #   note.destroy
-  # end
+  if @user
+    @user.items.each do |item|
+      item.destroy
+    end
+    @user.rooms.each do |room|
+      room.destroy
+    end
+    @user.destroy
+    session[:id] = nil
+  end
 
   @user = User.create({moves: 0, game_text: ""});
   session[:id] = @user.id
