@@ -33,6 +33,7 @@ end
 
 get('/menu') do
   # Game Reset and Setup
+
   # Clear user session and game data
   if @user
     @user.items.each do |item|
@@ -44,6 +45,9 @@ get('/menu') do
     @user.destroy
     session[:id] = nil
   end
+
+  # Remove expired user sessions and game data (>= 48 hours since last update) 
+  User.clear_expired(60 * 60 * 48)
 
   # Create new user session and game data
   @user = User.create({moves: 0, game_text: ""});
