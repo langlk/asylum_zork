@@ -2,7 +2,7 @@
 
 require("bundler/setup")
 require("csv")
-require "pry"
+
 Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
@@ -46,7 +46,7 @@ get('/menu') do
     session[:id] = nil
   end
 
-  # Remove expired user sessions and game data (>= 48 hours since last update) 
+  # Remove expired user sessions and game data (>= 48 hours since last update)
   User.clear_expired(60 * 60 * 48)
 
   # Create new user session and game data
